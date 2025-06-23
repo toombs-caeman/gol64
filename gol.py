@@ -38,16 +38,25 @@ def next_frame(state:int) -> int:
 if __name__ == '__main__':
     import sys
     import time
+    import random
     # accept an initial state as hex code or generate a random initial state.
     if len(sys.argv) > 1:
         frame = int(sys.argv[-1], 16)
     else:
-        import random
         frame = random.randint(0, uint64max)
+        frame = neighbors[64-19]
 
-    while frame:
-        print(chr(27) + '[2J') # clear screen
+    try:
+        while frame:
+            print(chr(27) + '[2J') # clear screen
+            print_frame(frame)
+            next = next_frame(frame)
+            if frame == next:
+                # we've reached a static state, exit
+                break
+            frame = next
+            time.sleep(0.5)
         print_frame(frame)
-        frame = next_frame(frame)
-        time.sleep(0.5)
+    except KeyboardInterrupt:
+        pass
 

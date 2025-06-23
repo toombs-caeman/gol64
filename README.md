@@ -1,17 +1,22 @@
 # Game of Life 64
-This is the game of life implemented using only 64 bits of storage for the bitwise challenge.
+This is the [game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) implemented using only 64 bits of storage for the [bitwise challenge](https://github.com/zesterer/the-bitwise-challenge).
 
-The state is an 8x8 grid of 1-bit cells (alive or dead).
+# Usage
+```
+# start from a random initial state
+python gol.py
 
+# start from a given state
+python gol.py e0a0e00
 ```
-     0  1  2  3  4  5  6  7
-     8  9  A  B  C  D  E  F
-    10 11 12 13 14 15 16 17
-    18 19 1A 1B 1C 1D 1E 1F
-    20 21 22 23 24 25 26 27
-    28 29 2A 2B 2C 2D 2E 2F
-    30 31 32 33 34 35 36 37
-    38 39 3A 3B 3C 3D 3E 3F
-```
+# Interesting States
+* `70402` simple glider
+* `7700` lines cycle
+* `3030` a box (ok maybe not that interesting)
+* `e0a0e00` complex cycle
+
+# Implementation
+The state is treated as an 8x8 grid of 1-bit cells (alive or dead).
 
 The number of neighbors is counted using a pre-computed bitmask for each position and python's built-in `int.bit_count()`.
+The rest is pretty straightforward. Not a lot of interesting tricks we can do here.
